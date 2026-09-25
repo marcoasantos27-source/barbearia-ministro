@@ -29,11 +29,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: barbearia-ministro/package-lock.json
 
       - name: Instalar dependências
+        working-directory: ./barbearia-ministro
         run: npm install
 
       - name: Gerar projeto
+        working-directory: ./barbearia-ministro
         run: npm run build
 
       - name: Configurar Pages
@@ -42,7 +45,7 @@ jobs:
       - name: Preparar arquivos
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./barbearia-ministro/dist
 
   deploy:
     environment:
